@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="2.1" xmlns="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2021.12.29 a las 10:22:49 AM CST 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://www.fabian.com/todo/soap/task">
+    <schemaBindings map="false">
+      <package name="com.fabian.todo.soap.task"/>
+    </schemaBindings>
+    <bindings scd="tns:TaskRequest">
+      <class ref="com.fabian.todo.soap.task.TaskRequest"/>
+    </bindings>
+    <bindings scd="tns:TaskResponse">
+      <class ref="com.fabian.todo.soap.task.TaskResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+

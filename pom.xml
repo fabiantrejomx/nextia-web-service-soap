@@ -15,6 +15,7 @@
 	<description>TODO ws soap</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<jaxb2-maven.version>2.5.0</jaxb2-maven.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,6 +33,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -46,6 +53,28 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>${jaxb2-maven.version}</version>
+				<executions>
+					<execution>
+						<id>xjc</id><!--Generate the classes from xsd files within targetNamespace package-->
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!--<schemaDirectory>src/main/resources</schemaDirectory>-->
+					<sources>
+						<source>src/main/resources/task.xsd</source>
+					</sources>
+					<outputDirectory>src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>
 		</plugins>
