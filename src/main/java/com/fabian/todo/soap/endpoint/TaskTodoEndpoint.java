@@ -1,6 +1,8 @@
 package com.fabian.todo.soap.endpoint;
 
 import com.fabian.todo.soap.service.TaskService;
+import com.fabian.todo.soap.task.DeleteTaskRequest;
+import com.fabian.todo.soap.task.DeleteTaskResponse;
 import com.fabian.todo.soap.task.TaskRequest;
 import com.fabian.todo.soap.task.TaskResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,12 @@ public class TaskTodoEndpoint {
     @ResponsePayload
     public TaskResponse createTask(@RequestPayload final TaskRequest taskRequest){
         return taskService.creteNewTask(taskRequest);
+    }
+
+    @PayloadRoot(namespace = NAMESPACE, localPart = "DeleteTaskRequest")
+    @ResponsePayload
+    public DeleteTaskResponse delete(@RequestPayload final DeleteTaskRequest request){
+        return taskService.deleteTask(request);
     }
 
 }

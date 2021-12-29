@@ -24,4 +24,20 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="DeleteTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskId" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="DeleteTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" type="xsd:boolean"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
 </schema>

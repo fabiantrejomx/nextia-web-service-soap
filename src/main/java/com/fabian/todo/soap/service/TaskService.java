@@ -4,6 +4,8 @@ import com.fabian.todo.soap.entity.Task;
 import com.fabian.todo.soap.entity.User;
 import com.fabian.todo.soap.repository.TaskRepository;
 import com.fabian.todo.soap.repository.UserRepository;
+import com.fabian.todo.soap.task.DeleteTaskRequest;
+import com.fabian.todo.soap.task.DeleteTaskResponse;
 import com.fabian.todo.soap.task.TaskRequest;
 import com.fabian.todo.soap.task.TaskResponse;
 import lombok.RequiredArgsConstructor;
@@ -43,4 +45,21 @@ public class TaskService {
 
         return taskResponse;
     }
+
+    @Transactional(
+            propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            rollbackFor = {Exception.class, RuntimeException.class})
+    public DeleteTaskResponse deleteTask(final DeleteTaskRequest deleteTaskRequest){
+
+        final Task deleteTask = taskRepository.findById(deleteTaskRequest.getTaskId())
+                .orElseThrow(() -> new EntityNotFoundException("Task not found"));
+
+        taskRepository.delete(deleteTask);
+
+        final DeleteTaskResponse response = new DeleteTaskResponse();
+        response.setStatus(true);
+        return response;
+    }
+
 }
