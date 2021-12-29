@@ -32,6 +32,10 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
+    @Transactional(
+            propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            rollbackFor = {Exception.class, RuntimeException.class})
     public TaskResponse creteNewTask(final TaskRequest taskRequest){
         final User user = userRepository.findById(taskRequest.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
@@ -48,6 +52,10 @@ public class TaskService {
         return taskResponse;
     }
 
+    @Transactional(
+            propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            rollbackFor = {Exception.class, RuntimeException.class})
     public DeleteTaskResponse deleteTask(final DeleteTaskRequest deleteTaskRequest){
         final Task task = taskRepository.findById(deleteTaskRequest.getTaskId())
                 .orElseThrow(() -> new EntityNotFoundException("Task not found"));
@@ -60,6 +68,10 @@ public class TaskService {
         return response;
     }
 
+    @Transactional(
+            propagation = Propagation.REQUIRED,
+            isolation = Isolation.DEFAULT,
+            rollbackFor = {Exception.class, RuntimeException.class})
     public UpdateTaskResponse update(final UpdateTaskRequest request){
         final Task task = taskRepository.findById(request.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Task not found"));
