@@ -25,9 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="subject" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="isDone" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -38,81 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id",
-    "subject",
-    "isDone"
+    "userId"
 })
-@XmlRootElement(name = "TaskResponse")
-public class TaskResponse {
+@XmlRootElement(name = "AllTaskRequest")
+public class AllTaskRequest {
 
     @XmlElement(required = true)
-    protected String id;
-    @XmlElement(required = true)
-    protected String subject;
-    protected boolean isDone;
+    protected String userId;
 
     /**
-     * Obtiene el valor de la propiedad id.
+     * Obtiene el valor de la propiedad userId.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
     /**
-     * Define el valor de la propiedad id.
+     * Define el valor de la propiedad userId.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setId(String value) {
-        this.id = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad subject.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getSubject() {
-        return subject;
-    }
-
-    /**
-     * Define el valor de la propiedad subject.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setSubject(String value) {
-        this.subject = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad isDone.
-     * 
-     */
-    public boolean isIsDone() {
-        return isDone;
-    }
-
-    /**
-     * Define el valor de la propiedad isDone.
-     * 
-     */
-    public void setIsDone(boolean value) {
-        this.isDone = value;
+    public void setUserId(String value) {
+        this.userId = value;
     }
 
 }

@@ -8,6 +8,8 @@
 
 package com.fabian.todo.soap.task;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,7 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="taskId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="taskInfo" type="{http://www.fabian.com/todo/soap/task}taskInfo" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "taskId"
+    "taskInfo"
 })
-@XmlRootElement(name = "DeleteTaskRequest")
-public class DeleteTaskRequest {
+@XmlRootElement(name = "AllTaskResponse")
+public class AllTaskResponse {
 
     @XmlElement(required = true)
-    protected String taskId;
+    protected List<TaskInfo> taskInfo;
 
     /**
-     * Obtiene el valor de la propiedad taskId.
+     * Gets the value of the taskInfo property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTaskId() {
-        return taskId;
-    }
-
-    /**
-     * Define el valor de la propiedad taskId.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the taskInfo property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTaskInfo().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link TaskInfo }
+     * 
+     * 
      */
-    public void setTaskId(String value) {
-        this.taskId = value;
+    public List<TaskInfo> getTaskInfo() {
+        if (taskInfo == null) {
+            taskInfo = new ArrayList<TaskInfo>();
+        }
+        return this.taskInfo;
     }
 
 }

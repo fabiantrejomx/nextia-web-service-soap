@@ -4,8 +4,11 @@ import com.fabian.todo.soap.entity.Task;
 import com.fabian.todo.soap.entity.User;
 import com.fabian.todo.soap.repository.TaskRepository;
 import com.fabian.todo.soap.repository.UserRepository;
+import com.fabian.todo.soap.task.AllTaskRequest;
+import com.fabian.todo.soap.task.AllTaskResponse;
 import com.fabian.todo.soap.task.DeleteTaskRequest;
 import com.fabian.todo.soap.task.DeleteTaskResponse;
+import com.fabian.todo.soap.task.TaskInfo;
 import com.fabian.todo.soap.task.TaskRequest;
 import com.fabian.todo.soap.task.TaskResponse;
 import com.fabian.todo.soap.task.UpdateTaskRequest;
@@ -15,10 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
-
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -66,6 +70,24 @@ public class TaskService {
 
         final UpdateTaskResponse response = new UpdateTaskResponse();
         response.setStatus(true);
+        return  response;
+    }
+
+    @Transactional(readOnly = true)
+    public AllTaskResponse getAllById(final AllTaskRequest request){
+        final User user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        final List<TaskInfo> data = user.getTasks().stream().map(task -> {
+             final TaskInfo info = new TaskInfo();
+            info.setId(task.getId());
+            info.setSubject(task.getSubject());
+            info.setIsDone(task.isDone());
+            return  info;
+        }).collect(Collectors.toList());
+
+        final AllTaskResponse response = new AllTaskResponse();
+        response.getTaskInfo().addAll(data);
         return  response;
     }
 

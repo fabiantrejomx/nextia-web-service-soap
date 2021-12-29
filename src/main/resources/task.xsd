@@ -58,4 +58,28 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="AllTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="userId" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="AllTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="taskInfo" type="tns:taskInfo" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="taskInfo">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"></xsd:element>
+            <xsd:element name="subject" type="xsd:string"></xsd:element>
+            <xsd:element name="isDone" type="xsd:boolean"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
 </schema>

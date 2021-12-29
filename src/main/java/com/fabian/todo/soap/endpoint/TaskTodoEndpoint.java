@@ -1,6 +1,8 @@
 package com.fabian.todo.soap.endpoint;
 
 import com.fabian.todo.soap.service.TaskService;
+import com.fabian.todo.soap.task.AllTaskRequest;
+import com.fabian.todo.soap.task.AllTaskResponse;
 import com.fabian.todo.soap.task.DeleteTaskRequest;
 import com.fabian.todo.soap.task.DeleteTaskResponse;
 import com.fabian.todo.soap.task.TaskRequest;
@@ -39,6 +41,12 @@ public class TaskTodoEndpoint {
     @ResponsePayload
     public UpdateTaskResponse update(@RequestPayload final UpdateTaskRequest request){
         return taskService.update(request);
+    }
+
+    @PayloadRoot(namespace = NAMESPACE, localPart = "AllTaskRequest")
+    @ResponsePayload
+    public AllTaskResponse getAllByUserId(@RequestPayload final AllTaskRequest request){
+        return taskService.getAllById(request);
     }
 
 }
