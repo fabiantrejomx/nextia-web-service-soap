@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
 // Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.12.29 a las 02:27:32 PM CST 
+// Generado el: 2021.12.29 a las 02:36:58 PM CST 
 //
 
 
@@ -66,6 +66,22 @@ public class ObjectFactory {
      */
     public DeleteTaskResponse createDeleteTaskResponse() {
         return new DeleteTaskResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateTaskRequest }
+     * 
+     */
+    public UpdateTaskRequest createUpdateTaskRequest() {
+        return new UpdateTaskRequest();
+    }
+
+    /**
+     * Create an instance of {@link UpdateTaskResponse }
+     * 
+     */
+    public UpdateTaskResponse createUpdateTaskResponse() {
+        return new UpdateTaskResponse();
     }
 
 }

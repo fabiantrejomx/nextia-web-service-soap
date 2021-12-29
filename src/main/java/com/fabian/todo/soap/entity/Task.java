@@ -42,6 +42,9 @@ public class Task {
         this.user = user;
     }
 
-
+    public void update(final String subject, final boolean done){
+        this.subject = subject;
+        this.done = done;
+    }
 
 }

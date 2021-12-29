@@ -5,6 +5,8 @@ import com.fabian.todo.soap.task.DeleteTaskRequest;
 import com.fabian.todo.soap.task.DeleteTaskResponse;
 import com.fabian.todo.soap.task.TaskRequest;
 import com.fabian.todo.soap.task.TaskResponse;
+import com.fabian.todo.soap.task.UpdateTaskRequest;
+import com.fabian.todo.soap.task.UpdateTaskResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -31,6 +33,12 @@ public class TaskTodoEndpoint {
     @ResponsePayload
     public DeleteTaskResponse delete(@RequestPayload final DeleteTaskRequest request){
         return taskService.deleteTask(request);
+    }
+
+    @PayloadRoot(namespace = NAMESPACE, localPart = "UpdateTaskRequest")
+    @ResponsePayload
+    public UpdateTaskResponse update(@RequestPayload final UpdateTaskRequest request){
+        return taskService.update(request);
     }
 
 }

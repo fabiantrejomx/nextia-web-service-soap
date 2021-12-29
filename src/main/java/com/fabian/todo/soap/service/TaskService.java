@@ -8,6 +8,8 @@ import com.fabian.todo.soap.task.DeleteTaskRequest;
 import com.fabian.todo.soap.task.DeleteTaskResponse;
 import com.fabian.todo.soap.task.TaskRequest;
 import com.fabian.todo.soap.task.TaskResponse;
+import com.fabian.todo.soap.task.UpdateTaskRequest;
+import com.fabian.todo.soap.task.UpdateTaskResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,17 +28,13 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
-    @Transactional(
-            propagation = Propagation.REQUIRED,
-            isolation = Isolation.DEFAULT,
-            rollbackFor = {Exception.class, RuntimeException.class})
     public TaskResponse creteNewTask(final TaskRequest taskRequest){
         final User user = userRepository.findById(taskRequest.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
         final Task task = new Task(taskRequest.getSubject(),taskRequest.isIsDone(), user);
         taskRepository.save(task);
-        log.info("Task was save");
+        log.info("A new task was save");
 
         final TaskResponse taskResponse = new TaskResponse();
         taskResponse.setId(task.getId());
@@ -46,20 +44,30 @@ public class TaskService {
         return taskResponse;
     }
 
-    @Transactional(
-            propagation = Propagation.REQUIRED,
-            isolation = Isolation.DEFAULT,
-            rollbackFor = {Exception.class, RuntimeException.class})
     public DeleteTaskResponse deleteTask(final DeleteTaskRequest deleteTaskRequest){
-
-        final Task deleteTask = taskRepository.findById(deleteTaskRequest.getTaskId())
+        final Task task = taskRepository.findById(deleteTaskRequest.getTaskId())
                 .orElseThrow(() -> new EntityNotFoundException("Task not found"));
 
-        taskRepository.delete(deleteTask);
+        taskRepository.delete(task);
+        log.info("Task with ID {} was deleted", deleteTaskRequest.getTaskId());
 
         final DeleteTaskResponse response = new DeleteTaskResponse();
         response.setStatus(true);
         return response;
     }
+
+    public UpdateTaskResponse update(final UpdateTaskRequest request){
+        final Task task = taskRepository.findById(request.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Task not found"));
+
+        task.update(request.getSubject(), request.isIsDone());
+        taskRepository.save(task);
+        log.info("Task with ID {} was updated", request.getId());
+
+        final UpdateTaskResponse response = new UpdateTaskResponse();
+        response.setStatus(true);
+        return  response;
+    }
+
 
 }

@@ -40,4 +40,22 @@
         </xsd:complexType>
     </xsd:element>
 
+    <xsd:element name="UpdateTaskRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="id" type="xsd:string"></xsd:element>
+                <xsd:element name="subject" type="xsd:string"></xsd:element>
+                <xsd:element name="isDone" type="xsd:boolean"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="UpdateTaskResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="status" type="xsd:boolean"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
 </schema>
