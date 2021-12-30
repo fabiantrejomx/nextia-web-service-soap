@@ -25,7 +25,7 @@ CRETE DATABASE taskdb
 CREATE TABLE user_info(
   id VARCHAR(36) NOT NULL,
   email VARCHAR(36) NOT NULL,
-  password VARCHAR(15) NOT NULL,
+  password VARCHAR(60) NOT NULL,
   PRIMARY KEY(id)
 );
 ```
